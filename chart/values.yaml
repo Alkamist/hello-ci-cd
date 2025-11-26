@@ -1,0 +1,2 @@
+replicaCount: 1
+image: docker.io/alkamist1/hello-ci-cd:latest
