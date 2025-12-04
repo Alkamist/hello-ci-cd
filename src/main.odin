@@ -8,13 +8,16 @@ PRINT_EVERY :: 1
 
 should_exit: bool
 
+handler :: proc "c" (_: posix.Signal) {
+	should_exit = true
+}
+
 main :: proc() {
 	tick        := time.tick_now()
 	accumulator := f32(PRINT_EVERY)
 
-	posix.signal(.SIGTERM, proc "c" (_: posix.Signal) {
-		should_exit = true
-	})
+	posix.signal(.SIGINT,  handler)
+	posix.signal(.SIGTERM, handler)
 
 	for {
 		accumulator += f32(time.duration_seconds(time.tick_since(tick)))
