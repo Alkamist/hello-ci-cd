@@ -24,7 +24,7 @@ spec:
             - /bin/sh
             - -c
             - "pgrep -f app || exit 1"
-          initialDelaySeconds: 4
+          initialDelaySeconds: 5
           periodSeconds: 30
           timeoutSeconds: 5
           failureThreshold: 3
